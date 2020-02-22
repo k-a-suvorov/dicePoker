@@ -1,20 +1,27 @@
+#импорт библиотек
+#Некоторые особенности игры будут реализованы позже
+
 import os
 import sys
 import time
 import random
 import datetime
 
-from termcolor import colored, cprint
+#Библиотека раскрашивания символов в линукс-консоли
+from termcolor import colored, cprint 
 
-money = 500
+
+#Объявление переменных
+
+money = 50
 currency = "$"
 win = False
 Loose = False
 
 text = ''
 color = ''
-from termcolor import colored, cprint
 
+#Функции раскраски текста
 
 def colorPosixLine(text): #Linux color text
 	cprint(text, 'yellow')
@@ -27,7 +34,9 @@ def colorLoose(text): #Linux color text
 	
 def colorChoice(text): #Linux color text
 	cprint(text, 'blue')	
-		
+
+#Функция покера на костях, пока без анимации	
+#конструкция if elif громоздкая, так как нужно проверить множество выигрышных условий	
 def getDice():
 		
 	a = random.randint(1,6)
@@ -166,6 +175,7 @@ def getDice():
 			result = money - (resultDice * 50)
 			choice()
 
+#Функция выбора игры в покер снова
 def choice():
 	colorChoice('Желаете еще раз сыграть? 1 - да, 2 - нет')
 	choiceAgain = int(input('>>> '))
@@ -177,12 +187,14 @@ def choice():
 	elif (choiceAgain == 1):
 		getDice()
 
+#Функция записи результата при выходе из игры
 def writeMoney():
 	global money
 	f = open("money.dat", "w", encoding="utf-8")
 	f.write(str(money))
 	f.close()
 
+#Метод чтения файла 
 def readMoney():
 	f = open("money.dat", "r", encoding="utf-8")
 	moneyStatus = int(f.readline())
@@ -191,6 +203,7 @@ def readMoney():
 	return print(moneyStatus)
 
 
+#Функция начала игры
 def startGame():
 	
 	switch = True
@@ -208,4 +221,5 @@ def startGame():
 	elif (select == 1):
 		getDice()		
 
+#Инициализация игры
 startGame()

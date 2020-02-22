@@ -1,16 +1,19 @@
+#импорт библиотек
+#Некоторые особенности игры будут реализованы позже
+
 import os
 import sys
 import time
 import random
 import datetime
 
-
+#Объявление переменных
 money = 100
 currency = "$"
 win = False
 Loose = False
 
-#functions.getBet()
+#Функция цветного текста в виндоус-консоли
 
 from ctypes import *
 windll.Kernel32.GetStdHandle.restype = c_ulong
@@ -26,7 +29,7 @@ def colorLine(c, s): #Win color text
 	print(" " + s)
 	print("*" * (len(s) +2))
 
-
+#Функция выбора заново игры внутри игры
 def choice():
 	colorLine(11, 'Желаете еще раз сыграть? 1 - да, 2 - нет')
 	choiceAgain = int(input('>>> '))
@@ -38,12 +41,14 @@ def choice():
 	elif (choiceAgain == 1):
 		getDice()
 
+#Функция чтения файла
 def writeMoney():
 	global money
 	f = open("money.dat", "w", encoding="utf-8")
 	f.write(str(money))
 	f.close()
 
+#Функция записи файла
 def readMoney():
 	f = open("money.dat", "r", encoding="utf-8")
 	moneyStatus = int(f.readline())
@@ -51,6 +56,8 @@ def readMoney():
 	
 	return print(moneyStatus)
 
+#Функция покера на костях, пока без анимации	
+#конструкция if elif громоздкая, так как нужно проверить множество выигрышных условий	
 def getDice():
 	
 	global money
@@ -211,7 +218,8 @@ def getDice():
 			print (F'Неудачный Шанс! {resultDice}')
 			money = money - (resultDice * 5)
 			choice()
-						
+
+#Функция запуска игры						
 def startGame():
 	
 	switch = True
@@ -229,4 +237,5 @@ def startGame():
 	elif (select == 1):
 		getDice()
 
+#Инициализация игры
 startGame()

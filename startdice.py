@@ -6,6 +6,8 @@ import sys
 import windice as wd
 import lindice as ld
 
+#Main code 
+#Определение типа операционной системы (windows = nt, linux = posix))
 
 #try:
 switch = True
