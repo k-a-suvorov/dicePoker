@@ -12,9 +12,9 @@ import lindice as ld
 #try:
 switch = True
 if (os.name == 'posix'):
-	ld.getDice()
+	os.system('python3 lindice.py')
 elif (os.name == 'nt'):
-	wd.getDice()
+	os.system('python3 windice.py')
 else:
 	print('This OS in not supported!')		
 	switch = False
